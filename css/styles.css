@@ -105,16 +105,25 @@ header nav a {
   font-size: 0.8rem;
   padding: 8px 6px;
   position: relative;
+  overflow: hidden;
 }
-header nav a.active:after {
+header nav a::after {
   content: "";
-  display: inline-block;
+  display: block;
   position: absolute;
   bottom: 0;
   left: 6px;
   width: 20px;
   height: 3px;
   background-color: #fff;
+  transform: scaleX(0);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: left;
+  pointer-events: none;
+}
+header nav a:hover::after,
+header nav a.active::after {
+  transform: scaleX(1);
 }
 div.header-wrapper div:nth-child(3) {
   display: flex;
@@ -197,11 +206,22 @@ div.header-wrapper div:nth-child(3) a:nth-child(2) {
   font-size: 0.8rem;
   font-weight: bold;
   background-color: #fff;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+}
+.btn:hover {
+  background-color: var(--orange);
+  color: #fff;
 }
 .btn.white {
   background-color: transparent;
   color: #fff;
   border-color: #fff;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.btn.white:hover {
+  background-color: #fff;
+  color: var(--purple);
 }
 @keyframes shadow-flying {
   0% {
@@ -288,7 +308,7 @@ div.header-wrapper div:nth-child(3) a:nth-child(2) {
   }
 }
 .huge-with-image {
-  font-size: 10rem;
+  font-size: 8rem;
   line-height: 7.2rem;
   font-weight: 900;
   background-image: url("../assets/smoke.jpg");
@@ -450,7 +470,7 @@ div.header-wrapper div:nth-child(3) a:nth-child(2) {
 }
 
 #mission {
-  background-image: url("team.jpg");
+  background-image: url("../assets/team.jpg");
   background-size: cover;
   padding-top: 50px;
   padding-bottom: 50px;
@@ -646,4 +666,11 @@ footer .orange {
   font-weight: bold;
   font-size: 1rem;
   margin-bottom: 16px;
+}
+footer .footer-bottom {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.8rem;
+  color: #aaa;
+  position: relative;
 }
